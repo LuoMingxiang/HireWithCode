@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Form, Input, Button, Card, message } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 const SubmitWork: React.FC = () => {
   const [form] = Form.useForm()
+  const navigate = useNavigate()
 
   const handleSubmit = async (values: { githubUrl: string; vercelUrl: string }) => {
     try {
@@ -10,6 +12,8 @@ const SubmitWork: React.FC = () => {
       console.log(values);
       message.success('提交成功！我们会尽快审核你的作品。')
       form.resetFields()
+      // 跳转到成功页面
+      navigate('/success')
     } catch (error) {
       message.error('提交失败，请稍后重试')
     }
@@ -18,7 +22,7 @@ const SubmitWork: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6">提交作品</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">提交你的作品，展示实力！</h2>
         <Form
           form={form}
           layout="vertical"
@@ -33,7 +37,7 @@ const SubmitWork: React.FC = () => {
               { type: 'url', message: '请输入有效的 URL 地址' }
             ]}
           >
-            <Input placeholder="https://github.com/username/repo" />
+            <Input size='large' placeholder="https://github.com/username/repo" />
           </Form.Item>
 
           <Form.Item
@@ -44,12 +48,12 @@ const SubmitWork: React.FC = () => {
               { type: 'url', message: '请输入有效的 URL 地址' }
             ]}
           >
-            <Input placeholder="https://your-project.vercel.app" />
+            <Input size='large' placeholder="https://your-project.vercel.app" />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              提交作品
+            <Button size='large' type="primary" htmlType="submit" block>
+              提交挑战成果
             </Button>
           </Form.Item>
         </Form>
