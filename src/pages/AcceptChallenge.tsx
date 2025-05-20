@@ -15,7 +15,7 @@ const AcceptChallenge: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6">接受挑战</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">准备好接受挑战了吗？</h2>
         <Form
           form={form}
           layout="vertical"
@@ -27,7 +27,7 @@ const AcceptChallenge: React.FC = () => {
             name="githubId"
             rules={[{ required: true, message: '请输入你的 GitHub ID' }]}
           >
-            <Input placeholder="请输入你的 GitHub ID" />
+            <Input size='large' placeholder="请输入你的 GitHub ID" />
           </Form.Item>
 
           <Form.Item
@@ -38,12 +38,12 @@ const AcceptChallenge: React.FC = () => {
               { type: 'email', message: '请输入有效的邮箱地址' }
             ]}
           >
-            <Input placeholder="请输入你的邮箱" />
+            <Input size='large' placeholder="请输入你的邮箱" />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              接受挑战
+            <Button size='large' type="primary" htmlType="submit" block>
+              开始挑战
             </Button>
           </Form.Item>
         </Form>
