@@ -64,7 +64,7 @@ const Welcome: React.FC = () => {
       <div className="text-center">
         <div className="rotate-in float">
           <img
-            src="/logo.png"
+            src={'/logo.png'}
             alt="Logo"
             className="mx-auto w-32 h-32 mb-4"
           />
