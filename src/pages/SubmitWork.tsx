@@ -7,6 +7,7 @@ const SubmitWork: React.FC = () => {
   const handleSubmit = async (values: { githubUrl: string; vercelUrl: string }) => {
     try {
       // TODO: 这里可以添加表单验证和提交逻辑
+      console.log(values);
       message.success('提交成功！我们会尽快审核你的作品。')
       form.resetFields()
     } catch (error) {
