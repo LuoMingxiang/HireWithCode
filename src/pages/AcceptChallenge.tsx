@@ -1,68 +1,53 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Form, Input, Button, Card } from 'antd'
 
 const AcceptChallenge: React.FC = () => {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({
-    githubId: '',
-    email: '',
-  })
+  const [form] = Form.useForm()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = (values: { githubId: string; email: string }) => {
     // TODO: 这里可以添加表单验证和提交逻辑
+    console.log('表单数据:', values)
     navigate('/submit')
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+      <Card className="max-w-md mx-auto">
         <h2 className="text-2xl font-bold text-center mb-6">接受挑战</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="githubId" className="block text-sm font-medium text-gray-700">
-              GitHub ID
-            </label>
-            <input
-              type="text"
-              id="githubId"
-              name="githubId"
-              value={formData.githubId}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              邮箱
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="GitHub ID"
+            name="githubId"
+            rules={[{ required: true, message: '请输入你的 GitHub ID' }]}
           >
-            接受挑战
-          </button>
-        </form>
-      </div>
+            <Input placeholder="请输入你的 GitHub ID" />
+          </Form.Item>
+
+          <Form.Item
+            label="邮箱"
+            name="email"
+            rules={[
+              { required: true, message: '请输入你的邮箱' },
+              { type: 'email', message: '请输入有效的邮箱地址' }
+            ]}
+          >
+            <Input placeholder="请输入你的邮箱" />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              接受挑战
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </div>
   )
 }

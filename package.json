@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@tailwindcss/typography": "^0.5.16",
+    "antd": "^5.25.2",
     "github-markdown-css": "^5.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
